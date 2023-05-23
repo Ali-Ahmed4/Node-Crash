@@ -59,6 +59,7 @@ const setRedis =  async (req,res) => {
 
 
 /* app.get("/",getRedis) */
+app.get("/", (req, res) => { res.send("its working!!!")})
 app.post("/",setRedis)
 
 
