@@ -29,19 +29,21 @@ const setRedis =  async (req,res) => {
   const { content } = req.body
 
   /* const get =  await getRedis(content) */
- 
-  if(get?.length > 0)
+  
+  const response = await axios.get(`http://jsonplaceholder.typicode.com/${content}`)
+    
+    /* const cachedContent = await client.set(content, JSON.stringify(response.data), "EX","40") */
+
+  res.status(200).json({content: response.data})
+
+  /* if(get?.length > 0)
   {
     res.status(200).json(JSON.parse(get))
   }
   else 
   {
-    const response = await axios.get(`http://jsonplaceholder.typicode.com/${content}`)
     
-    /* const cachedContent = await client.set(content, JSON.stringify(response.data), "EX","40") */
 
-    res.status(200).json({content: response.data})
-/* 
     fetch(`http://jsonplaceholder.typicode.com/${content}`)
     .then((response) => response.json())
     .then( async (jsonData) => {
@@ -50,8 +52,8 @@ const setRedis =  async (req,res) => {
 
      res.status(200).json({content: jsonData})
 
-    }) */
-  }
+    })
+  } */
   
   
 }
